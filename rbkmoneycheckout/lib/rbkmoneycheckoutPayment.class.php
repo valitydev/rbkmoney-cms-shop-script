@@ -121,12 +121,11 @@ class rbkmoneycheckoutPayment extends waPayment implements waIPayment
             'dueDate' => $this->prepareDueDate(),
             'currency' => $order->currency,
             'product' => $description,
-            'cart' => $this->prepareCart($order),
             'description' => '',
                             );
 
-        if (trim($this->cart_checkbox)!= static::CART_CHECKBOX_TRUE){
-                unset($data['cart']);
+        if (trim($this->cart_checkbox) == static::CART_CHECKBOX_TRUE){
+                $data['cart']=$this->prepareCart($order);
 
         }
             
